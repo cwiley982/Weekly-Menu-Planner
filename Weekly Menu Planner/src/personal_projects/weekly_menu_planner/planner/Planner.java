@@ -8,6 +8,7 @@ public class Planner {
 	private Meal[] weeklyMeals;
 	private ArrayList<Meal> mealDirectory;
 	private final int DAYS_IN_WEEK = 7;
+	// need some way to keep track of the shopping list
 
 	public Planner() {
 		weeklyMeals = new Meal[DAYS_IN_WEEK];

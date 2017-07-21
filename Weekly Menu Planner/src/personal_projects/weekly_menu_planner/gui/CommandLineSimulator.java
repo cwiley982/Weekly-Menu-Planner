@@ -19,15 +19,36 @@ public class CommandLineSimulator {
 		System.out.println("\nPlease enter a command from the options above: ");
 		while (input.hasNext()) {
 			String command = input.next();
-			while (!command.equalsIgnoreCase("Q")) {
+			if (!command.equalsIgnoreCase("Q")) {
 				if (command.equalsIgnoreCase("C")) {
-					System.out.println(planner.getPlannerMeals().toString());
+					System.out.println(
+							"Would you like to add a meal (\"A\"), remove a meal (\"R\"), or view your cookbook (\"V\")? ");
+					// maybe give option to go back out to main menu
+					String command2 = input.next();
+					if (command2.equalsIgnoreCase("A")) {
+						// allow them to add a meal
+					} else if (command2.equalsIgnoreCase("R")) {
+						// allow them to remove a meal
+					} else if (command2.equalsIgnoreCase("V")) {
+						System.out.println(planner.getPlannerMeals().toString());
+					} else {
+						System.out.println("Invalid command. Please try again.");
+						// need a while loop somewhere to re-prompt after each
+						// command entry
+					}
 				} else if (command.equalsIgnoreCase("P")) {
-					// allow user to add and remove meals and view current
+					// allow user to add and remove meals to planner and view
+					// current
 					// planner
 				} else if (command.equalsIgnoreCase("L")) {
 					// display shopping list
+				} else {
+					System.out.println("Invalid command. Please try again.");
 				}
+			} else {
+				System.out.println("\nThank you for using Weekly Menu Planner! Goodbye!");
+				break;
+				// think this is in the right place ^^
 			}
 			System.out.println("Please enter a command from the options above: ");
 		}
