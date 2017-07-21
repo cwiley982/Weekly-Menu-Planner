@@ -5,54 +5,71 @@ import java.util.ArrayList;
 import personal_projects.weekly_menu_planner.util.Meal;
 
 public class Planner {
-	private Meal[] weeklyMeals;
-	private ArrayList<Meal> mealDirectory;
+	private Meal[] plannedMeals;
+	private ArrayList<Meal> cookbook;
 	private final int DAYS_IN_WEEK = 7;
 	// need some way to keep track of the shopping list
 
 	public Planner() {
-		weeklyMeals = new Meal[DAYS_IN_WEEK];
-		mealDirectory = new ArrayList<Meal>();
+		plannedMeals = new Meal[DAYS_IN_WEEK];
+		cookbook = new ArrayList<Meal>();
 	}
 
-	public boolean addMealToList(String mealName) {
+	public boolean addMealToCookBook(String mealName) {
 		try {
 			Meal newMeal = new Meal(mealName);
-			mealDirectory.add(newMeal);
+			cookbook.add(newMeal);
 			return true;
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
 	}
 
-	public String[] getMealNames() {
-		String[] mealNames = new String[mealDirectory.size()];
-		for (int i = 0; i < mealDirectory.size(); i++) {
-			mealNames[i] = mealDirectory.get(i).getMealName();
+	public boolean removeMealFromCookBook(String mealName) {
+		for (int i = 0; i < cookbook.size(); i++) {
+			if (cookbook.get(i).getMealName().equals(mealName)) {
+				cookbook.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public ArrayList<Meal> getCookBook() {
+		return cookbook;
+	}
+
+	public String getCookBookAsString() {
+		String mealNames = "";
+		if (cookbook.size() == 0) {
+			return "You don't have any meals in your cookbook yet.\n";
+		}
+		for (int i = 0; i < cookbook.size(); i++) {
+			mealNames += cookbook.get(i).getMealName() + "\n";
 		}
 		return mealNames;
 	}
 
 	public void addMealToPlanner(String mealName, int index) {
-		for (int i = 0; i < mealDirectory.size(); i++) {
-			if (mealDirectory.get(i).getMealName().equals(mealName)) {
-				weeklyMeals[index] = mealDirectory.get(i);
+		for (int i = 0; i < cookbook.size(); i++) {
+			if (cookbook.get(i).getMealName().equals(mealName)) {
+				plannedMeals[index] = cookbook.get(i);
 			}
 		}
 	}
 
 	public boolean removeMealFromPlanner(int index) {
-		if (weeklyMeals[index] != null) {
-			weeklyMeals[index] = null;
+		if (plannedMeals[index] != null) {
+			plannedMeals[index] = null;
 			return true;
 		}
 		return false;
 	}
 
-	public String[] getPlannerMeals() {
-		String[] plannerMeals = new String[weeklyMeals.length];
-		for (int i = 0; i < weeklyMeals.length; i++) {
-			plannerMeals[i] = weeklyMeals[i].getMealName();
+	public String[] getPlannedMeals() {
+		String[] plannerMeals = new String[plannedMeals.length];
+		for (int i = 0; i < plannedMeals.length; i++) {
+			plannerMeals[i] = plannedMeals[i].getMealName();
 		}
 		return plannerMeals;
 	}

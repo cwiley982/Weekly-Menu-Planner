@@ -30,7 +30,7 @@ public class CommandLineSimulator {
 					} else if (command2.equalsIgnoreCase("R")) {
 						// allow them to remove a meal
 					} else if (command2.equalsIgnoreCase("V")) {
-						System.out.println(planner.getPlannerMeals().toString());
+						System.out.println(planner.getCookBookAsString());
 					} else {
 						System.out.println("Invalid command. Please try again.");
 						// need a while loop somewhere to re-prompt after each
