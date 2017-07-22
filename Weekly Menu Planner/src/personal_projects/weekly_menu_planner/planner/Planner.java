@@ -8,6 +8,7 @@ public class Planner {
 	private Meal[] plannedMeals;
 	private ArrayList<Meal> cookbook;
 	private final int DAYS_IN_WEEK = 7;
+	private String[] daysInWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	// need some way to keep track of the shopping list
 
 	public Planner() {
@@ -15,10 +16,9 @@ public class Planner {
 		cookbook = new ArrayList<Meal>();
 	}
 
-	public boolean addMealToCookBook(String mealName) {
+	public boolean addMealToCookBook(Meal meal) {
 		try {
-			Meal newMeal = new Meal(mealName);
-			cookbook.add(newMeal);
+			cookbook.add(meal);
 			return true;
 		} catch (IllegalArgumentException e) {
 			return false;
@@ -66,10 +66,19 @@ public class Planner {
 		return false;
 	}
 
-	public String[] getPlannedMeals() {
-		String[] plannerMeals = new String[plannedMeals.length];
+	public String getPlannedMeals() {
+		String plannerMeals = "";
+		if (plannedMeals.length == 0) {
+			return "You don't have any meals in your cookbook yet.\n";
+		}
 		for (int i = 0; i < plannedMeals.length; i++) {
-			plannerMeals[i] = plannedMeals[i].getMealName();
+			if (plannedMeals[i] != null) {
+				plannerMeals += daysInWeek[i] + ": \t";
+				plannerMeals += plannedMeals[i].getMealName() + "\n";
+			} else {
+				plannerMeals += daysInWeek[i] + ": \t";
+				plannerMeals += "---" + "\n";
+			}
 		}
 		return plannerMeals;
 	}
