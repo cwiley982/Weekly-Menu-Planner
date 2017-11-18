@@ -1,8 +1,6 @@
 package personal_projects.weekly_menu_planner.util;
 
-import java.util.ArrayList;
-
-public class Meal {
+public class Meal implements Comparable<Meal> {
 
 	private String mealName;
 	private ArrayList<Ingredient> ingredients;
@@ -23,7 +21,8 @@ public class Meal {
 		return mealName;
 	}
 
-	public void addIngredient(String name, int amount, String unit) throws IllegalArgumentException {
+    public void addIngredient(String name, double amount, String unit)
+            throws IllegalArgumentException {
 		Ingredient ing = new Ingredient(name, amount, unit);
 		ingredients.add(ing);
 	}
@@ -46,4 +45,20 @@ public class Meal {
 		return array;
 	}
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append(mealName).append("\n");
+        for (int i = 0; i < ingredients.size(); i++) {
+            str.append("\t").append(ingredients.get(i).toString()).append("\n");
+        }
+        return str.toString();
+    }
+    
+    @Override
+    public int compareTo(Meal o) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    
 }

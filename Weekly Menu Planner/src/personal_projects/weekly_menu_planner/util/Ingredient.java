@@ -1,11 +1,11 @@
 package personal_projects.weekly_menu_planner.util;
 
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient> {
 	private String unit;
-	private int amount;
+    private double amount;
 	private String name;
 
-	public Ingredient(String name, int amount, String unit) {
+    public Ingredient(String name, double amount, String unit) {
 		setName(name);
 		setAmount(amount);
 		setUnit(unit);
@@ -21,7 +21,7 @@ public class Ingredient {
 		return name;
 	}
 
-	private void setAmount(int amt) {
+    private void setAmount(double amt) {
 		if (amt <= 0) {
 			throw new IllegalArgumentException(
 					"Invalid Ingredient: Amount cannot be zero, negative or contain letters.");
@@ -30,7 +30,7 @@ public class Ingredient {
 		amount = amt;
 	}
 
-	public int getAmount() {
+    public double getAmount() {
 		return amount;
 	}
 
@@ -48,8 +48,20 @@ public class Ingredient {
 	public String[] getArray() {
 		String[] array = new String[3];
 		array[0] = getName();
-		array[1] = Integer.toString(getAmount());
+        array[1] = Double.toString(getAmount());
 		array[2] = getUnit();
 		return array;
 	}
+    
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append(name).append(Double.toString(amount)).append(unit);
+        return str.toString();
+    }
+    
+    @Override
+    public int compareTo(Ingredient o) {
+        return 0;
+    }
 }
