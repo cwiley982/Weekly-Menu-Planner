@@ -56,7 +56,7 @@ public class Ingredient implements Comparable<Ingredient> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(name).append(Double.toString(amount)).append(unit);
+        str.append(name).append(" ").append(Double.toString(amount)).append(" ").append(unit);
         return str.toString();
     }
     

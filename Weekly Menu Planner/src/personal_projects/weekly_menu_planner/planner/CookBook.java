@@ -32,6 +32,16 @@ public class CookBook {
         return false;
     }
     
+    public String[][] getCookBookArray() {
+        String[][] cb = new String[meals.size()][3];
+        for (int i = 0; i < meals.size(); i++) {
+            cb[i][0] = meals.get(i).getMealName();
+            cb[i][1] = Integer.toString(meals.get(i).getNumIngredients());
+            cb[i][2] = (meals.get(i).getPlanned() ? "Y" : "");
+        }
+        return cb;
+    }
+    
     public String getMealNames() {
         StringBuilder mealNames = new StringBuilder();
         if (meals.size() == 0) {

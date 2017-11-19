@@ -4,10 +4,12 @@ public class Meal implements Comparable<Meal> {
 
 	private String mealName;
 	private ArrayList<Ingredient> ingredients;
+    private boolean planned;
 
 	public Meal(String name) {
 		setMealName(name);
 		ingredients = new ArrayList<Ingredient>();
+        planned = false;
 	}
 
 	private void setMealName(String name) {
@@ -20,6 +22,18 @@ public class Meal implements Comparable<Meal> {
 	public String getMealName() {
 		return mealName;
 	}
+    
+    public void setPlanned() {
+        planned = true;
+    }
+    
+    public boolean getPlanned() {
+        return planned;
+    }
+    
+    public void unPlan() {
+        planned = false;
+    }
 
     public void addIngredient(String name, double amount, String unit)
             throws IllegalArgumentException {
@@ -44,13 +58,17 @@ public class Meal implements Comparable<Meal> {
 		}
 		return array;
 	}
+    
+    public int getNumIngredients() {
+        return ingredients.size();
+    }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(mealName).append("\n");
+        str.append(mealName).append(" ").append(Integer.toString(ingredients.size())).append("\n");
         for (int i = 0; i < ingredients.size(); i++) {
-            str.append("\t").append(ingredients.get(i).toString()).append("\n");
+            str.append("    ").append(ingredients.get(i).toString()).append("\n");
         }
         return str.toString();
     }
