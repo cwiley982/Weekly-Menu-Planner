@@ -11,13 +11,24 @@ public class Planner {
 	public Planner() {
 		plannedMeals = new Meal[DAYS_IN_WEEK];
 	}
+    
+    public String[][] getPlannerArray() {
+        String[][] arr = new String[7][2];
+        for (int i = 0; i < 7; i++) {
+            arr[i][0] = daysInWeek[i];
+            arr[i][1] = (plannedMeals[i] != null ? plannedMeals[i].getMealName() : "---");
+        }
+        return arr;
+    }
 
     public void addMeal(Meal m, int index) {
         plannedMeals[index] = m;
+        m.setPlanned();
 	}
 
     public boolean removeMeal(int index) {
 		if (plannedMeals[index] != null) {
+            plannedMeals[index].unPlan();
 			plannedMeals[index] = null;
 			return true;
 		}

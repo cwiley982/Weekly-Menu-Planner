@@ -2,7 +2,6 @@ package personal_projects.weekly_menu_planner.gui;
 
 import java.util.Scanner;
 
-import personal_projects.weekly_menu_planner.io.FileIO;
 import personal_projects.weekly_menu_planner.manager.MealManager;
 import personal_projects.weekly_menu_planner.util.Meal;
 
@@ -38,7 +37,7 @@ public class CommandLineSimulator {
         if (command.equalsIgnoreCase("Y")) {
             System.out.println("Please enter the name of the file you want to save to: ");
             String filename = input.next();
-            if (FileIO.saveToFile(manager.getCookBook(), filename)) {
+            if (manager.saveCookBook(filename)) {
                 System.out.println("Cookbook saved successfully!");
             }
         }

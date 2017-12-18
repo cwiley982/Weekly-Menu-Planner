@@ -2,16 +2,16 @@ package personal_projects.weekly_menu_planner.gui;
 
 import javax.swing.table.AbstractTableModel;
 
-import personal_projects.weekly_menu_planner.util.Meal;
+import personal_projects.weekly_menu_planner.planner.Planner;
 
-public class IngredientTableModel extends AbstractTableModel {
+public class PlannerTableModel extends AbstractTableModel {
     
     private static final long serialVersionUID = 1L;
-    private String[] columnNames = { "Ingredient", "Amount", "Unit" };
+    private String[] columnNames = { "Day", "Meal Planner" };
     private Object[][] data;
     
-    public IngredientTableModel() {
-        updateData(null);
+    public PlannerTableModel(Planner p) {
+        updateData(p);
     }
     
     public int getColumnCount() {
@@ -43,13 +43,8 @@ public class IngredientTableModel extends AbstractTableModel {
         fireTableCellUpdated(row, col);
     }
     
-    protected void updateData(Meal m) {
-        if (m == null) {
-            String[][] empty = new String[0][3];
-            data = empty;
-        } else {
-            data = m.getIngredientsArray();
-        }
+    protected void updateData(Planner p) {
+        data = p.getPlannerArray();
         fireTableDataChanged();
     }
 }

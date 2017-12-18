@@ -45,11 +45,12 @@ public class CookBookTableModel extends AbstractTableModel {
     
     protected void updateData(CookBook cb) {
         if (cb == null) {
-            String[][] empty = { { "", "", "" } };
+            String[][] empty = new String[0][3];
             data = empty;
         } else {
             data = cb.getCookBookArray();
         }
+        fireTableDataChanged();
     }
     
 }
