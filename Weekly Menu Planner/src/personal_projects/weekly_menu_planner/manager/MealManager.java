@@ -34,7 +34,7 @@ public class MealManager {
                 planner.addMeal(cb.getMealAt(i), index);
             }
         }
-        System.out.println("Invalid meal name.");
+        // System.out.println("Invalid meal name.");
     }
     
     public boolean removeMealFromPlanner(int index) {

@@ -49,6 +49,7 @@ public class PlannerGUI extends JFrame implements ActionListener {
     private static final String MEAL_CREATOR_PANEL = "Meal Creator Panel";
     
     public static void main(String[] args) {
+        @SuppressWarnings("unused")
         PlannerGUI UI = new PlannerGUI();
     }
     
@@ -194,6 +195,8 @@ public class PlannerGUI extends JFrame implements ActionListener {
     }
     
     private class CookBookPanel extends JPanel implements ActionListener {
+        /** default */
+        private static final long serialVersionUID = 1L;
         private JButton btnImport;
         private JButton btnExport;
         private JTable tblIngredients;
