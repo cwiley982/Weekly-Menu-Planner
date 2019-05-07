@@ -5,15 +5,16 @@ public class Meal implements Comparable<Meal> {
 	private String mealName;
 	private ArrayList<Ingredient> ingredients;
     private boolean planned;
+    private ProteinType proteinType;
 
 	public Meal(String name) {
 		setMealName(name);
-		ingredients = new ArrayList<Ingredient>();
+		ingredients = new ArrayList<>();
         planned = false;
 	}
 
 	private void setMealName(String name) {
-		if (name.isEmpty() || name == null) {
+		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException("Invalid Meal: Meal Name cannot be null or empty");
 		}
 		mealName = name;
@@ -50,6 +51,14 @@ public class Meal implements Comparable<Meal> {
 		}
 		return false;
 	}
+	
+	public void setProteinType(ProteinType pt) {
+		proteinType = pt;
+	}
+
+	public ProteinType getProteinType() {
+		return proteinType;
+	}
 
 	public String[][] getIngredientsArray() {
 		String[][] array = new String[ingredients.size()][3];
@@ -75,8 +84,11 @@ public class Meal implements Comparable<Meal> {
     
     @Override
     public int compareTo(Meal o) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	enum ProteinType {
+		CHICKEN, SHRIMP, SALMON, PORK, SCALLOPS, STEAK, GROUND_TURKEY, GROUND_BEEF;
+	}
 }
